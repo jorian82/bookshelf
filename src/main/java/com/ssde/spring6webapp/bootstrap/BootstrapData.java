@@ -80,9 +80,17 @@ public class BootstrapData implements CommandLineRunner {
         ted.setAddress("9012 TED street");
         ted.setCity("TED city");
 
-        publisherRepository.save(oriley);
-        publisherRepository.save(mcgraw);
-        publisherRepository.save(ted);
+        Publisher orileySaved = publisherRepository.save(oriley);
+        Publisher mcgrawSaved = publisherRepository.save(mcgraw);
+        Publisher tedSaved = publisherRepository.save(ted);
+
+        bookSaved.setPublisher(orileySaved);
+        dddSaved.setPublisher(tedSaved);
+        ejbSaved.setPublisher(mcgrawSaved);
+
+        bookRepository.save(bookSaved);
+        bookRepository.save(dddSaved);
+        bookRepository.save(ejbSaved);
 
         System.out.println("In bootstrap");
         System.out.println("Author count: " + authorRepository.count());
