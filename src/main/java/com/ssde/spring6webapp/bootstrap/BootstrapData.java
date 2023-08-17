@@ -2,8 +2,10 @@ package com.ssde.spring6webapp.bootstrap;
 
 import com.ssde.spring6webapp.domain.Author;
 import com.ssde.spring6webapp.domain.Book;
+import com.ssde.spring6webapp.domain.Publisher;
 import com.ssde.spring6webapp.repositories.AuthorRepository;
 import com.ssde.spring6webapp.repositories.BookRepository;
+import com.ssde.spring6webapp.repositories.PublisherRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -12,10 +14,12 @@ public class BootstrapData implements CommandLineRunner {
 
     private final AuthorRepository authorRepository;
     private final BookRepository bookRepository;
+    private final PublisherRepository publisherRepository;
 
-    public BootstrapData(AuthorRepository authorRepository, BookRepository bookRepository) {
+    public BootstrapData(AuthorRepository authorRepository, BookRepository bookRepository, PublisherRepository publisherRepository) {
         this.authorRepository = authorRepository;
         this.bookRepository = bookRepository;
+        this.publisherRepository = publisherRepository;
     }
 
     @Override
@@ -57,9 +61,33 @@ public class BootstrapData implements CommandLineRunner {
         rodSaved.getBooks().add(ejbSaved);
         ericSaved.getBooks().add(dddSaved);
 
+        Publisher oriley = new Publisher();
+        oriley.setPublisherName("O'Riley");
+        oriley.setAddress("1234 O'Riley street");
+        oriley.setCity("O'Riley city");
+//        oriley.setState("TX");
+//        oriley.setZip("12345");
+
+        Publisher mcgraw = new Publisher();
+        mcgraw.setPublisherName("McGraw Hill");
+        mcgraw.setAddress("5678 McGraw street");
+        mcgraw.setCity("McGraw city");
+//        mcgraw.setState("IL");
+//        mcgraw.setZip("67890");
+
+        Publisher ted = new Publisher();
+        ted.setPublisherName("TED Editorial");
+        ted.setAddress("9012 TED street");
+        ted.setCity("TED city");
+
+        publisherRepository.save(oriley);
+        publisherRepository.save(mcgraw);
+        publisherRepository.save(ted);
+
         System.out.println("In bootstrap");
         System.out.println("Author count: " + authorRepository.count());
         System.out.println("Books count: " + bookRepository.count());
+        System.out.println("Publisher count: "+ publisherRepository.count());
 
     }
 }
