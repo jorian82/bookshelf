@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Spring Framework - Bookshelf</title>
+    </head>
+    <body>
+        <h1>Publishers</h1>
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>State</th>
+                <th>ZIP</th>
+            </tr>
+            <tr th:each="publisher : ${publishers}">
+                <td th:text="${publisher.id}"></td>
+                <td th:text="${publisher.publisherName}"></td>
+                <td th:text="${publisher.address}"></td>
+                <td th:text="${publisher.city}"></td>
+                <td th:text="${publisher.state}"></td>
+                <td th:text="${publisher.zip}"></td>
+            </tr>
+        </table>
+    </body>
+</html>
