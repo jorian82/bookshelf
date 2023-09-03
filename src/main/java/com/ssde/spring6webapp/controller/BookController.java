@@ -1,6 +1,7 @@
 package com.ssde.spring6webapp.controller;
 
 import com.ssde.spring6webapp.services.BookService;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * IDE: IntelliJ IDEA,
  * Project: bookshelf
  */
+@Controller
 public class BookController {
 
     private final BookService bookService;
